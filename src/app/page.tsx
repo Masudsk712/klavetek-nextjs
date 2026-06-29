@@ -1,14 +1,13 @@
-import { SPACING } from "@/constants/spacing";
+import MagneticButton from "@/components/ui/MagneticButton";
 
-export default function Card() {
+export default function Home() {
   return (
-    <div
-      style={{
-        padding: SPACING.cardPadding,
-        marginBottom: SPACING.gapLG,
-      }}
-    >
-      Card Content
-    </div>
+    <main className="flex min-h-screen items-center justify-center bg-slate-100">
+
+      <MagneticButton>
+        Get a Quote
+      </MagneticButton>
+
+    </main>
   );
 }
