@@ -1,24 +1,23 @@
+"use client";
+
 import HeroBackground from "./HeroBackground";
 import HeroContent from "./HeroContent";
-import HeroStats from "./HeroStats";
+import HeroScrollIndicator from "./HeroScrollIndicator";
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-[#040404]"
+      className="relative min-h-screen overflow-hidden bg-[#040404] pt-20"
     >
-      {/* Background */}
+      {/* Background Layer */}
       <HeroBackground />
 
-      {/* Hero Content */}
+      {/* Content Layer */}
       <HeroContent />
 
-      {/* Bottom Stats */}
-      <HeroStats />
-
-      {/* Bottom Fade */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505]" />
+      {/* Scroll Indicator */}
+      <HeroScrollIndicator />
     </section>
   );
 }

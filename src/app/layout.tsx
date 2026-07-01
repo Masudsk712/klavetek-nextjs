@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { metadata } from "@/config/metadata";
 import { ThemeProvider } from "@/providers/theme-provider";
+import Navbar from "@/components/layout/Navbar";
 
 export { metadata };
 
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} antialiased`}
       >
+        <Navbar />
         <ThemeProvider>
           {children}
         </ThemeProvider>

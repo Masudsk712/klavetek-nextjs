@@ -1,246 +1,138 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Container from "@/components/ui/Container";
-import { Heading } from "@/components/ui/Heading";
-import { Button } from "@/components/ui/button";
-import { Mouse } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
-
-import {
-  ArrowRight,
-  CheckCircle2,
-  Leaf,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import HeroCTA from "./HeroCTA";
 
 export default function HeroContent() {
-  const [mounted, setMounted] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <Container className="relative z-20 flex min-h-[95vh] items-center py-24">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
-          <div>
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2 backdrop-blur-md">
-              <Leaf size={18} className="text-emerald-400" />
-              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
-                Welcome to Klavetek Green Blocks & Tiles Pvt. Ltd.
-              </span>
-            </div>
-            <Heading level="h1" className="mb-8 text-white">
-              Building
-              <span className="block bg-gradient-to-r from-green-400 via-lime-300 to-white bg-clip-text text-transparent">Stronger Walls</span>
-              For A
-              <span className="block">Greener Tomorrow</span>
-            </Heading>
-            <p className="max-w-2xl text-lg leading-8 text-slate-300">
-              Klavetek Green Blocks & Tiles Pvt. Ltd. manufactures premium-quality Autoclaved Aerated Concrete (AAC) Blocks engineered for superior strength, lightweight construction, thermal insulation, fire resistance, and sustainable infrastructure development across residential, commercial, and industrial projects.
-            </p>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              <Feature text="Eco-Friendly Manufacturing" />
-              <Feature text="Lightweight AAC Blocks" />
-              <Feature text="High Compressive Strength" />
-              <Feature text="Thermal & Sound Insulation" />
-            </div>
-            <div className="mt-12 flex flex-wrap gap-5">
-              <Button size="lg">View Products <ArrowRight size={18} className="ml-2" /></Button>
-              <Button variant="outline" size="lg">Get Free Quote</Button>
-            </div>
-          </div>
-        </div>
-      </Container>
-    );
-  }
-
   return (
-    <Container className="relative z-20 flex min-h-[95vh] items-center py-24">
-      <div className="grid items-center gap-16 lg:grid-cols-2">
-
+    <Container className="relative z-20 flex min-h-[85vh] items-center py-24">
+      <div className="grid items-center gap-12 lg:gap-20 lg:grid-cols-[1fr_320px]">
         {/* LEFT CONTENT */}
-
-        <motion.div
-          initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-
-          {/* Badge */}
-
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2 backdrop-blur-md">
-            <Leaf size={18} className="text-emerald-400" />
-            <span className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
-              Welcome to Klavetek Green Blocks & Tiles Pvt. Ltd.
+        <div>
+          {/* Small Label */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
+          >
+            <span className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+              <span className="h-px w-8 bg-emerald-400" />
+              STRONGER • SMARTER • GREENER
             </span>
-          </div>
+          </motion.div>
 
-          {/* Heading */}
-
-          <Heading level="h1" className="mb-8 text-white">
-            Building
-            <span className="block bg-gradient-to-r from-green-400 via-lime-300 to-white bg-clip-text text-transparent">
+          {/* Large Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-6 text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-6xl"
+          >
+            Building{" "}
+            <span className="bg-gradient-to-r from-green-400 via-lime-300 to-emerald-200 bg-clip-text text-transparent">
               Stronger Walls
             </span>
+            <br />
             For A
-            <span className="block">
+            <br />
+            <span className="bg-gradient-to-r from-green-400 via-lime-300 to-emerald-200 bg-clip-text text-transparent">
               Greener Tomorrow
             </span>
-          </Heading>
+          </motion.h1>
 
-          {/* Description */}
+          {/* Short Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg text-white/70"
+          >
+            Premium AAC Blocks & Tiles.
+            <br />
+            <span className="text-white/90 font-medium">Stronger • Lighter • Sustainable</span>
+          </motion.p>
 
-          <p className="max-w-2xl text-lg leading-8 text-slate-300">
-            Klavetek Green Blocks & Tiles Pvt. Ltd. manufactures
-            premium-quality Autoclaved Aerated Concrete (AAC) Blocks
-            engineered for superior strength, lightweight construction,
-            thermal insulation, fire resistance, and sustainable
-            infrastructure development across residential,
-            commercial, and industrial projects.
-          </p>
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <HeroCTA />
+          </motion.div>
+        </div>
 
-          {/* Feature List */}
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            <Feature text="Eco-Friendly Manufacturing" />
-            <Feature text="Lightweight AAC Blocks" />
-            <Feature text="High Compressive Strength" />
-            <Feature text="Thermal & Sound Insulation" />
-          </div>
-
-          {/* Buttons */}
-
-          <div className="mt-12 flex flex-wrap gap-5">
-            <Button size="lg">
-              View Products
-              <ArrowRight size={18} className="ml-2" />
-            </Button>
-            <Button variant="outline" size="lg">
-              Get Free Quote
-            </Button>
-          </div>
-
-        </motion.div>
-
-        {/* ================= RIGHT CONTENT ================= */}
-
+        {/* RIGHT PREMIUM CARD */}
         <motion.div
-          className="relative hidden lg:flex items-center justify-center"
-          initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, delay: 0.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="hidden lg:block"
         >
-          {/* Main Glass Card */}
-
-          <div className="relative w-full max-w-lg">
-            <div className="rounded-[32px] border border-white/10 bg-white/5 p-8 backdrop-blur-2xl">
-
-              {/* Product Image */}
-
-              <div className="mb-8 overflow-hidden rounded-3xl">
-                <img
-                  src="/images/products/aac-block.png"
-                  alt="AAC Blocks"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
+          <div className="w-[320px] rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8">
+            {/* Features */}
+            <div className="space-y-4 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-emerald-500/15 border border-emerald-400/20 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <span className="text-sm font-medium text-white/90">ISO Certified</span>
               </div>
-
-              {/* Title */}
-
-              <h3 className="text-3xl font-bold text-white">
-                Premium AAC Blocks
-              </h3>
-
-              <p className="mt-4 text-slate-300 leading-8">
-                Manufactured with advanced autoclaved aerated concrete technology
-                to provide exceptional strength, lightweight performance,
-                thermal insulation and eco-friendly construction.
-              </p>
-
-              {/* Features */}
-
-              <div className="mt-8 space-y-4">
-                <Info text="High Compressive Strength" />
-                <Info text="Fire Resistant Material" />
-                <Info text="Thermal Insulation" />
-                <Info text="Eco-Friendly Manufacturing" />
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-emerald-500/15 border border-emerald-400/20 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <span className="text-sm font-medium text-white/90">Eco Friendly</span>
               </div>
-
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-emerald-500/15 border border-emerald-400/20 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <span className="text-sm font-medium text-white/90">Pan India Supply</span>
+              </div>
             </div>
 
-            {/* Floating Card 1 */}
+            {/* Divider */}
+            <div className="h-px bg-white/10 mb-6" />
 
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ repeat: Infinity, duration: 4 }}
-              className="absolute left-4 top-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-5 backdrop-blur-xl"
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="text-center">
+                <span className="block text-xl font-bold text-emerald-400">20+</span>
+                <span className="block text-xs text-slate-400 mt-1">Years Experience</span>
+              </div>
+              <div className="text-center">
+                <span className="block text-xl font-bold text-emerald-400">500+</span>
+                <span className="block text-xs text-slate-400 mt-1">Projects Delivered</span>
+              </div>
+              <div className="text-center">
+                <span className="block text-xl font-bold text-emerald-400">50+</span>
+                <span className="block text-xs text-slate-400 mt-1">Cities Served</span>
+              </div>
+            </div>
+
+            {/* CTA Link */}
+            <a
+              href="#products"
+              className="group flex items-center justify-center gap-2 text-sm font-semibold text-emerald-300 hover:text-emerald-200 transition-colors"
             >
-              <p className="text-sm uppercase tracking-widest text-green-300">
-                Manufacturing
-              </p>
-              <h4 className="mt-2 text-xl font-bold text-white">
-                Precision Engineering
-              </h4>
-            </motion.div>
-
-            {/* Floating Card 2 */}
-
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ repeat: Infinity, duration: 5 }}
-              className="absolute right-4 bottom-4 rounded-2xl border border-white/10 bg-black/40 p-5 backdrop-blur-xl"
-            >
-              <p className="text-sm uppercase tracking-widest text-green-300">
-                Sustainability
-              </p>
-              <h4 className="mt-2 text-xl font-bold text-white">
-                Green Building Ready
-              </h4>
-            </motion.div>
-
+              <span>View Products</span>
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
           </div>
-
         </motion.div>
-
       </div>
-
-      {/* Mouse Indicator */}
-
-      <motion.div
-        className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 lg:flex flex-col items-center"
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-      >
-        <Mouse className="h-7 w-7 text-white/70" />
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity }}
-          className="mt-2 h-8 w-[2px] rounded-full bg-emerald-400"
-        />
-      </motion.div>
     </Container>
-  );
-}
-
-function Feature({ text }: { text: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <CheckCircle2 size={20} className="text-green-400" />
-      <span className="text-white">{text}</span>
-    </div>
-  );
-}
-
-function Info({ text }: { text: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <CheckCircle2 size={18} className="text-green-400" />
-      <span className="text-white">{text}</span>
-    </div>
   );
 }

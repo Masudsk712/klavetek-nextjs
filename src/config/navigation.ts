@@ -27,23 +27,8 @@ export const NAVIGATION = {
     },
 
     {
-      title: "Technology",
-      href: "/technology",
-    },
-
-    {
-      title: "Industries",
-      href: "/industries",
-    },
-
-    {
       title: "Projects",
       href: "/projects",
-    },
-
-    {
-      title: "Certificates",
-      href: "/certificates",
     },
 
     {
@@ -52,7 +37,12 @@ export const NAVIGATION = {
     },
 
     {
-      title: "Contact",
+      title: "Career",
+      href: "/career",
+    },
+
+    {
+      title: "Contact Us",
       href: "/contact",
     },
   ],

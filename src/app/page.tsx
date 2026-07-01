@@ -1,7 +1,7 @@
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 import Hero from "@/components/sections/hero/Hero";
+import TrustBar from "@/components/sections/trust-bar/TrustBar";
 import About from "@/components/sections/about/About";
 import Industries from "@/components/sections/industries/Industries";
 import Services from "@/components/sections/services/Services";
@@ -15,9 +15,9 @@ import CTA from "@/components/sections/cta/CTA";
 export default function Home() {
   return (
     <>
-      <Navbar />
-
       <Hero />
+
+      <TrustBar />
 
       <About />
 

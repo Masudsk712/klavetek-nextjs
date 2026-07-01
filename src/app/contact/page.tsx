@@ -7,11 +7,6 @@ import Container from "@/components/ui/Container";
 import { Heading } from "@/components/ui/Heading";
 import { SITE } from "@/config/site";
 
-export const metadata = {
-  title: "Contact Us | Klavetek",
-  description: "Get in touch with Klavetek for premium AAC blocks and construction solutions.",
-};
-
 export default function ContactPage() {
   return (
     <>
