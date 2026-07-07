@@ -17,7 +17,7 @@ export default function HeroCard() {
         <motion.div
           animate={{ y: [0, -14, 0] }}
           transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
-          className="relative rounded-[32px] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-3xl shadow-2xl overflow-hidden"
+          className="relative rounded-[20px] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-3xl shadow-2xl overflow-hidden"
           style={{
             boxShadow: "0 0 0 1px rgba(255,255,255,0.06) inset, 0 30px 60px -20px rgba(0,0,0,0.7), 0 0 80px -30px rgba(16,185,129,0.25)"
           }}

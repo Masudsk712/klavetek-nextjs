@@ -21,6 +21,7 @@ export const TYPOGRAPHY = {
   // ==========================================================
 
   fontSize: {
+    display: "5.5rem",  // 88px - Extra large premium heading
     hero: "5rem",      // 80px
     h1: "4rem",        // 64px
     h2: "3rem",        // 48px
@@ -54,9 +55,9 @@ export const TYPOGRAPHY = {
   // ==========================================================
 
   lineHeight: {
-    hero: 1.1,
-    heading: 1.2,
-    body: 1.7,
+    hero: 1.05,
+    heading: 1.1,
+    body: 1.6,
     compact: 1.4,
   },
 
@@ -65,11 +66,12 @@ export const TYPOGRAPHY = {
   // ==========================================================
 
   letterSpacing: {
-    tighter: "-0.05em",
-    tight: "-0.025em",
+    tighter: "-0.025em",
+    tight: "-0.01em",
     normal: "0",
-    wide: "0.05em",
-    wider: "0.08em",
+    wide: "0.01em",
+    wider: "0.02em",
+    widest: "0.1em",
   },
 } as const;
 

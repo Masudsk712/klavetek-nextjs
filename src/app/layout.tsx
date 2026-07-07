@@ -2,8 +2,8 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
 import { metadata } from "@/config/metadata";
-import { ThemeProvider } from "@/providers/theme-provider";
-import Navbar from "@/components/layout/Navbar";
+import { ThemeProvider, ThemeFlashPrevention } from "@/providers/theme-provider";
+import PremiumNavbar from "@/components/layout/PremiumNavbar";
 
 export { metadata };
 
@@ -28,10 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${poppins.variable} antialiased`}
+        className={`${inter.variable} ${poppins.variable} antialiased theme-transition bg-background text-text-primary`}
       >
-        <Navbar />
         <ThemeProvider>
+          <ThemeFlashPrevention />
+          <PremiumNavbar />
           {children}
         </ThemeProvider>
       </body>

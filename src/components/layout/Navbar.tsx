@@ -4,10 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, Sun, Moon } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAVIGATION } from "@/config/navigation";
 import { useTheme } from "next-themes";
+import ThemeToggle from "@/components/common/theme-toggle";
 
 const NAV_ITEMS = NAVIGATION.main;
 const CTA = NAVIGATION.cta;
@@ -77,9 +78,9 @@ function NavbarInner() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 flex h-[72px] items-center transition-all duration-400 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-50 flex h-[72px] items-center transition-all duration-500 ease-out ${
           scrolled
-            ? "bg-[rgba(10,16,18,0.70)] backdrop-blur-xl border border-[rgba(255,255,255,0.08)] shadow-[0_8px_32px_rgba(0,0,0,0.12)] rounded-[18px]"
+            ? "bg-white/75 dark:bg-black/75 backdrop-blur-2xl shadow-[0_1px_0_rgba(0,0,0,0.06)] dark:shadow-[0_1px_0_rgba(255,255,255,0.06)]"
             : "bg-transparent border-none backdrop-blur-none shadow-none"
         }`}
         style={{
@@ -87,101 +88,102 @@ function NavbarInner() {
         }}
         role="banner"
       >
-        <div
-          className="mx-auto flex h-full w-full max-w-[1400px] items-center justify-between px-6 lg:px-12"
-        >
+        <div className="mx-auto flex h-full w-full max-w-[1536px] items-center justify-between px-6 lg:px-10 xl:px-12 2xl:px-16">
+          {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 transition-all duration-300 hover:scale-[1.03]"
+            className="flex items-center gap-3 transition-all duration-300 hover:opacity-90"
             aria-label="Klavetek home"
           >
-            <div className="relative flex h-[48px] w-[48px] items-center justify-center">
+            <div className="relative flex h-[52px] w-[52px] items-center justify-center shrink-0">
               <Image
                 src="/logos/LOGO.png"
                 alt="Klavetek Logo"
-                width={48}
-                height={48}
+                width={52}
+                height={52}
                 priority
                 className="h-full w-full object-contain"
               />
             </div>
             <div className="hidden sm:block">
-              <p className="text-lg font-bold bg-gradient-to-r from-emerald-300 via-lime-200 to-emerald-300 bg-clip-text text-transparent tracking-tight" style={{ filter: "drop-shadow(0 0 8px rgba(167,243,208,0.3))" }}>
+              <p className="text-lg font-bold tracking-tight text-gray-900 dark:text-white leading-none">
                 KLAVETEK
               </p>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-300">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400 mt-0.5">
                 Green Blocks & Tiles Pvt. Ltd.
               </p>
             </div>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
             {NAV_ITEMS.map((item) => {
               const active = isActive(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                    active ? "text-emerald-300" : "text-slate-300 hover:text-emerald-300"
+                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                    active
+                      ? "text-emerald-600 dark:text-emerald-400"
+                      : "text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                   }`}
                   aria-current={active ? "page" : undefined}
                 >
-                  {item.title}
+                  <span className="relative">
+                    {item.title}
+                    <span className={`absolute -bottom-0.5 left-0 h-[2px] bg-emerald-500 transition-all duration-300 rounded-full ${
+                      active ? "w-full" : "w-0 group-hover:w-full"
+                    }`} />
+                  </span>
                   {active && (
                     <motion.span
-                      className="absolute -bottom-1 left-4 right-4 h-[2px] rounded-full bg-gradient-to-r from-lime-300 to-emerald-400"
+                      className="absolute -bottom-0.5 left-4 right-4 h-[2px] rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600"
                       layoutId="nav-indicator"
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     />
                   )}
+                  <motion.span
+                    className="absolute inset-0 rounded-lg bg-emerald-500/5 dark:bg-emerald-400/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
                 </Link>
               );
             })}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-3">
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-200 hover:border-emerald-400/50 hover:bg-emerald-400/15"
-              aria-label="Toggle theme"
-            >
-              <Sun size={18} className="text-white dark:hidden" />
-              <Moon size={18} className="hidden text-white dark:block" />
-            </button>
+          {/* Desktop Right Section */}
+          <div className="hidden lg:flex items-center gap-4">
+            <ThemeToggle />
             <Link
               href={CTA.href}
-              className="group relative inline-flex h-11 items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-lime-500 to-emerald-600 px-8 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(16,185,129,0.35)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(16,185,129,0.55)] hover:scale-[1.03] hover:-translate-y-0.5"
+              className="group relative inline-flex h-11 items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-emerald-500 to-emerald-700 px-7 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(16,185,129,0.3)] transition-all duration-500 ease-out hover:shadow-[0_8px_32px_rgba(16,185,129,0.5)] hover:scale-[1.02] hover:-translate-y-0.5"
               aria-label={CTA.title}
             >
               <span className="relative z-10 flex items-center gap-2">
                 {CTA.title}
                 <ArrowRight
                   size={16}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
+                  className="transition-transform duration-300 ease-out group-hover:translate-x-1"
                 />
               </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             </Link>
           </div>
 
+          {/* Mobile Right Section */}
           <div className="flex items-center gap-2 lg:hidden">
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-200 hover:border-emerald-400/50 hover:bg-emerald-400/15"
-              aria-label="Toggle theme"
-            >
-              <Sun size={18} className="text-white dark:hidden" />
-              <Moon size={18} className="hidden text-white dark:block" />
-            </button>
+            <ThemeToggle />
             <button
               onClick={toggleMobile}
               type="button"
-              className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-200 hover:border-emerald-400/50 hover:bg-emerald-400/15"
+              className="relative flex h-11 w-11 items-center justify-center rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-md transition-all duration-200 hover:border-emerald-400/50 hover:bg-emerald-400/15"
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}
               aria-controls="mobile-drawer"
             >
-              <Menu size={22} className="text-white" />
+              <Menu size={22} className="text-black dark:text-white" />
             </button>
           </div>
         </div>
@@ -207,38 +209,31 @@ function NavbarInner() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-[rgba(10,16,18,0.95)] backdrop-blur-2xl lg:hidden"
+              className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/95 backdrop-blur-2xl lg:hidden"
               role="dialog"
               aria-modal="true"
               aria-label="Mobile navigation"
             >
-                <motion.div
+              <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.4 }}
                   className="mb-8 flex flex-col items-center gap-4"
                 >
-                  <button
-                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-all duration-200 hover:border-emerald-400/60 hover:bg-emerald-400/15"
-                    aria-label="Toggle theme"
-                  >
-                    <Sun size={18} className="dark:hidden" />
-                    <Moon size={18} className="hidden dark:block" />
-                  </button>
-                  <div className="relative flex h-[44px] w-[44px] items-center justify-center">
+                  <ThemeToggle />
+                  <div className="relative flex h-[48px] w-[48px] items-center justify-center">
                     <Image
                       src="/logos/LOGO.png"
                       alt="Klavetek Logo"
-                      width={44}
-                      height={44}
+                      width={48}
+                      height={48}
                       priority
                       className="h-full w-full object-contain"
                     />
                   </div>
-                  <div>
+                  <div className="text-center">
                     <p className="text-xl font-bold text-white tracking-tight">KLAVETEK</p>
-                    <p className="text-xs font-medium uppercase tracking-widest text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-widest text-gray-400">
                       Green Blocks & Tiles Pvt. Ltd.
                     </p>
                   </div>
@@ -260,7 +255,7 @@ function NavbarInner() {
                       className={`relative px-6 py-4 text-2xl font-medium transition-all duration-200 ${
                         active
                           ? "text-emerald-400 scale-105"
-                          : "text-slate-300 hover:text-emerald-400"
+                          : "text-gray-300 hover:text-emerald-400"
                       }`}
                       style={{
                         animationDelay: `${index * 0.05}s`,
@@ -285,7 +280,7 @@ function NavbarInner() {
                 <Link
                   href={CTA.href}
                   onClick={closeMobile}
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-lime-500 to-emerald-600 px-10 py-4 text-lg font-semibold text-white shadow-[0_4px_24px_rgba(16,185,129,0.25)] transition-all duration-300 hover:shadow-[0_8px_40px_rgba(16,185,129,0.45)] hover:scale-[1.03]"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-700 px-10 py-4 text-lg font-semibold text-white shadow-[0_4px_24px_rgba(16,185,129,0.25)] transition-all duration-300 hover:shadow-[0_8px_40px_rgba(16,185,129,0.45)] hover:scale-[1.03]"
                   aria-label={CTA.title}
                 >
                   {CTA.title}
@@ -295,7 +290,7 @@ function NavbarInner() {
 
               <button
                 onClick={closeMobile}
-                className="absolute top-8 right-8 flex h-12 w-12 items-center justify-center rounded-full border border-slate-300/20 bg-slate-300/10 text-slate-300 transition-all duration-200 hover:border-emerald-400/60 hover:text-white hover:bg-emerald-400/15"
+                className="absolute top-8 right-8 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-all duration-200 hover:border-emerald-400/60 hover:text-white hover:bg-emerald-400/15"
                 aria-label="Close menu"
               >
                 <X size={24} />

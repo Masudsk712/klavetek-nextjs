@@ -7,12 +7,12 @@
 
 export const COLORS = {
   // ==========================================================
-  // Brand Colors
+  // Brand Colors - Premium
   // ==========================================================
 
-  primary: "#6BAF2A",       // Brand Green
-  secondary: "#4F8F1E",     // Dark Green
-  accent: "#A8D63A",        // Lime Accent
+  primary: "#16A34A",       // Premium Primary Green
+  secondary: "#22C55E",     // vibrant Accent Green
+  accent: "#22C55E",        // Accent Green
 
   // ==========================================================
   // Neutral Colors

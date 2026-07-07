@@ -21,8 +21,8 @@ const spacingClasses = {
 
 const backgroundClasses = {
   default: "bg-background",
-  muted: "bg-slate-50 dark:bg-slate-900/30",
-  dark: "bg-slate-950 text-white",
+  muted: "bg-gray-50 dark:bg-black/5",
+  dark: "bg-black text-white",
   primary: "bg-primary text-white",
 };
 

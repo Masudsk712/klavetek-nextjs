@@ -27,11 +27,6 @@ export const NAVIGATION = {
     },
 
     {
-      title: "Projects",
-      href: "/projects",
-    },
-
-    {
       title: "Gallery",
       href: "/gallery",
     },
