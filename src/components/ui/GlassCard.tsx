@@ -1,60 +1,120 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
+"use client";
 
-interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
+import * as React from "react";
+import { cn } from "@/lib/cn";
+
+interface GlassCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
+
+  blur?: "sm" | "md" | "lg" | "xl";
+
+  hover?: boolean;
+
+  glow?: boolean;
+
+  borderGradient?: boolean;
 }
 
 export default function GlassCard({
   children,
   className,
+  blur = "lg",
+  hover = true,
+  glow = true,
+  borderGradient = true,
   ...props
 }: GlassCardProps) {
+  const blurClass = {
+    sm: "backdrop-blur-sm",
+    md: "backdrop-blur-md",
+    lg: "backdrop-blur-xl",
+    xl: "backdrop-blur-2xl",
+  };
+
   return (
     <div
       className={cn(
-        // Base
-        "relative overflow-hidden rounded-[20px]",
+        "group relative overflow-hidden rounded-3xl",
 
-        // Glass Effect - Premium
-        "bg-card dark:bg-card",
-
-        "backdrop-blur-2xl",
-
-        // Border - Subtle premium
-        "border border-black/5 dark:border-white/10",
-
-        // Shadow - Soft realistic
-        "shadow-[0_1px_3px_0_rgba(0,0,0,0.04),0_1px_2px_-1px_rgba(0,0,0,0.04)] dark:shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_1px_2px_-1px_rgba(0,0,0,0.3)]",
-
-        // Transition - Premium smooth
-        "transition-all duration-500 ease-out",
-
-        // Hover - Luxury feel
-        "hover:-translate-y-[6px]",
-        "hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_40px_-15px_rgba(34,197,94,0.2)]",
-        "hover:border-[#22C55E]/20 dark:hover:border-[#22C55E]/30",
+        borderGradient &&
+          "bg-gradient-to-br from-white/20 via-white/5 to-green-500/20 p-[1px]",
 
         className
       )}
       {...props}
     >
-      {/* Light Reflection */}
       <div
-        className="
-        pointer-events-none
-        absolute
-        inset-0
-        bg-gradient-to-br
-        from-white/40
-        via-transparent
-        to-transparent
-        dark:from-white/5
-      "
-      />
+        className={cn(
+          "relative h-full w-full rounded-[22px]",
 
-      <div className="relative z-10">
-        {children}
+          blurClass[blur],
+
+          "border border-white/10",
+
+          "bg-white/10 dark:bg-white/[0.04]",
+
+          "transition-all duration-500",
+
+          hover &&
+            "hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/20",
+
+          glow &&
+            "before:absolute before:inset-0 before:rounded-[22px] before:bg-gradient-to-br before:from-green-400/10 before:to-transparent before:opacity-0 before:transition-opacity before:duration-500 group-hover:before:opacity-100"
+        )}
+      >
+        {/* Top Light */}
+        <div
+          className="
+            absolute
+            left-0
+            top-0
+            h-px
+            w-full
+            bg-gradient-to-r
+            from-transparent
+            via-white/60
+            to-transparent
+            opacity-60
+          "
+        />
+
+        {/* Side Glow */}
+        <div
+          className="
+            absolute
+            -right-16
+            -top-16
+            h-40
+            w-40
+            rounded-full
+            bg-green-500/10
+            blur-3xl
+            transition-all
+            duration-700
+            group-hover:scale-150
+          "
+        />
+
+        {/* Bottom Glow */}
+        <div
+          className="
+            absolute
+            -bottom-20
+            left-1/2
+            h-40
+            w-40
+            -translate-x-1/2
+            rounded-full
+            bg-emerald-500/10
+            blur-3xl
+          "
+        />
+
+        {/* Content */}
+        <div className="relative z-10 h-full w-full p-6">
+          {children}
+        </div>
       </div>
     </div>
   );

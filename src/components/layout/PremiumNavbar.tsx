@@ -28,6 +28,7 @@ const SHRINK_THRESHOLD = 200;
 /*  Shared easing                                                      */
 /* ------------------------------------------------------------------ */
 const easeOutExpo: Transition["ease"] = [0.25, 0.1, 0.25, 1];
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const springTransition: Transition = {
   type: "spring",
   stiffness: 380,

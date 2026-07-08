@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import {
@@ -24,8 +24,6 @@ import {
   Clock,
   ArrowRight,
   CheckCircle2,
-  ExternalLink,
-  FileText,
   ShieldCheck,
   Leaf,
 } from "lucide-react";
@@ -143,6 +141,18 @@ const socialLinks = [
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const isInView = useInView(footerRef, { once: true, margin: "-80px" });
+  
+  const [particles] = useState(() =>
+    Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      width: 2 + Math.random() * 3,
+      height: 2 + Math.random() * 3,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 12 + Math.random() * 15,
+      delay: Math.random() * 10,
+    }))
+  );
 
   return (
     <footer
@@ -203,16 +213,16 @@ export default function Footer() {
 
       {/* ─── Floating Soft Particles ─── */}
       <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden" aria-hidden="true">
-        {[...Array(15)].map((_, i) => (
+        {particles.map((particle) => (
           <div
-            key={i}
+            key={particle.id}
             className="absolute rounded-full bg-emerald-400/20"
             style={{
-              width: `${2 + Math.random() * 3}px`,
-              height: `${2 + Math.random() * 3}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `particle-float ${12 + Math.random() * 15}s ease-in-out infinite ${Math.random() * 10}s`,
+              width: `${particle.width}px`,
+              height: `${particle.height}px`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              animation: `particle-float ${particle.duration}s ease-in-out infinite ${particle.delay}s`,
             }}
           />
         ))}
@@ -555,9 +565,9 @@ export default function Footer() {
               All Rights Reserved.
             </div>
 
-            {/* Center: Made with ❤️ */}
+            {/* Center: Made with love */}
             <div className="text-xs text-gray-500">
-              Made with <span className="text-emerald-400">❤️</span> for Sustainable Construction
+              Made with <span className="text-emerald-400">&#10084;</span> for Sustainable Construction
             </div>
 
             {/* Right: Links */}
