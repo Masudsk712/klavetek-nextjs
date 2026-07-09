@@ -1,33 +1,36 @@
-import { cn } from "@/lib/cn";
-import { HTMLAttributes } from "react";
-import Container from "./Container";
+"use client";
 
-interface SectionProps extends HTMLAttributes<HTMLElement> {
-  id?: string;
+import { cn } from "@/lib/cn";
+
+interface SectionProps {
   children: React.ReactNode;
+  id?: string;
   className?: string;
   containerClassName?: string;
 }
 
 export default function Section({
-  id,
   children,
+  id,
   className,
   containerClassName,
-  ...props
 }: SectionProps) {
   return (
     <section
       id={id}
       className={cn(
-        "relative overflow-hidden py-20 md:py-28 lg:py-32",
+        "relative w-full",
         className
       )}
-      {...props}
     >
-      <Container className={containerClassName}>
+      <div
+        className={cn(
+          "mx-auto w-full max-w-[1400px] px-6 lg:px-10",
+          containerClassName
+        )}
+      >
         {children}
-      </Container>
+      </div>
     </section>
   );
 }

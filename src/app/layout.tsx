@@ -4,7 +4,7 @@ import "./globals.css";
 import { metadata } from "@/config/metadata";
 import { ThemeProvider, ThemeFlashPrevention } from "@/providers/theme-provider";
 import PremiumNavbar from "@/components/layout/PremiumNavbar";
-
+import Footer from "@/components/layout/Footer";
 export { metadata };
 
 const inter = Inter({
@@ -34,6 +34,7 @@ export default function RootLayout({
           <ThemeFlashPrevention />
           <PremiumNavbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
