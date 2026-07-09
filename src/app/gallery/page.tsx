@@ -1,8 +1,7 @@
-import Navbar from "@/components/layout/Navbar";
+import Navbar from "@/components/layout/PremiumNavbar";
 import Footer from "@/components/layout/Footer";
-import Section from "@/components/ui/Section";
-import Container from "@/components/ui/Container";
-import { Heading } from "@/components/ui/Heading";
+import Section from "@/components/shared/Section";
+import Container from "@/components/shared/Container";
 
 export const metadata = {
   title: "Gallery | Klavetek",
@@ -13,19 +12,17 @@ export default function GalleryPage() {
   return (
     <>
       <Navbar />
-      <main>
-        <Section background="dark" spacing="lg">
+      <main className="pt-32">
+        <div className="bg-slate-900 py-20">
           <Container>
-            <Heading level="h1" align="center" className="text-white">
-              Project Gallery
-            </Heading>
+            <h1 className="text-center text-4xl font-bold text-white">Project Gallery</h1>
             <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-slate-300">
               Visual documentation of our work across India.
             </p>
           </Container>
-        </Section>
+        </div>
 
-        <Section spacing="lg">
+        <div className="py-20">
           <Container>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
@@ -57,7 +54,7 @@ export default function GalleryPage() {
               ))}
             </div>
           </Container>
-        </Section>
+        </div>
       </main>
       <Footer />
     </>

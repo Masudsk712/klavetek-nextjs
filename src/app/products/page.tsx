@@ -1,8 +1,7 @@
-import Navbar from "@/components/layout/Navbar";
+import Navbar from "@/components/layout/PremiumNavbar";
 import Footer from "@/components/layout/Footer";
-import Section from "@/components/ui/Section";
-import Container from "@/components/ui/Container";
-import { Heading } from "@/components/ui/Heading";
+import Section from "@/components/shared/Section";
+import Container from "@/components/shared/Container";
 
 export const metadata = {
   title: "Products | Klavetek",
@@ -13,19 +12,17 @@ export default function ProductsPage() {
   return (
     <>
       <Navbar />
-      <main>
-        <Section background="dark" spacing="lg">
-          <Container>
-            <Heading level="h1" align="center" className="text-white">
-              Our Products
-            </Heading>
+      <main className="pt-32">
+        <div className="bg-slate-900 py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <h1 className="text-center text-4xl font-bold text-white">Our Products</h1>
             <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-slate-300">
               Premium AAC blocks engineered for strength and sustainability.
             </p>
-          </Container>
-        </Section>
+          </div>
+        </div>
 
-        <Section spacing="lg">
+        <div className="py-20">
           <Container>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {[
@@ -69,7 +66,7 @@ export default function ProductsPage() {
               ))}
             </div>
           </Container>
-        </Section>
+        </div>
       </main>
       <Footer />
     </>

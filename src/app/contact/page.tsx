@@ -2,28 +2,25 @@
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Section from "@/components/ui/Section";
-import Container from "@/components/ui/Container";
-import { Heading } from "@/components/ui/Heading";
+import Section from "@/components/shared/Section";
+import Container from "@/components/shared/Container";
 import { SITE } from "@/config/site";
 
 export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main>
-        <Section background="dark" spacing="lg">
+      <main className="pt-32">
+        <div className="bg-slate-900 py-20">
           <Container>
-            <Heading level="h1" align="center" className="text-white">
-              Contact Us
-            </Heading>
+            <h1 className="text-center text-4xl font-bold text-white">Contact Us</h1>
             <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-slate-300">
-              We&rsquo;re here to help with your construction needs. Reach out today.
+              We're here to help with your construction needs. Reach out today.
             </p>
           </Container>
-        </Section>
+        </div>
 
-        <Section spacing="lg">
+        <section className="py-20">
           <Container>
             <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-2">
               <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -126,7 +123,7 @@ export default function ContactPage() {
               </div>
             </div>
           </Container>
-        </Section>
+        </section>
       </main>
       <Footer />
     </>
